@@ -11,22 +11,72 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/mystyle.css" />
+        
     </head>
-    <body>
-        <table>
-            <tr>
-                <th>Header</th>
-                <th>Header2</th>
-            </tr>
-            <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-            </tr>
-            <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-            </tr>
-
-        </table>
+    <body ng-app="myApp" ng-controller="InscriptionController">
+        
+        
+        <div class="col-md-6 col-sm-6 col-xs-12 spacer">
+            <div class="panel panel-info">
+                <div class="panel-heading">Inscription Etudiant </div>
+                <div class="panel-body">
+                    <div class="" ng-if="mode.value=='form'">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Nom : </label>
+                                <input type="text" ng-model="etudiant.nom" class="form-control"/>
+                                <span ng-if="errors" class="error">{{errors.nom}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Prénom : </label>
+                                <input type="text" ng-model="etudiant.prenom" class="form-control"/>
+                                <span ng-if="errors" class="error">{{errors.prenom}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Date de Naissance : </label>
+                                <input type="date" ng-model="etudiant.dateNaissance" class="form-control" />
+                                <span ng-if="errors" class="error">{{errors.dateNaissance}}</span>
+                            </div>
+                            <div class="">
+                                <button class="btn btn-primary" ng-click="saveEtudiant()">Enregister</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="" ng-if="mode.value=='confirm'">
+                        <div class="panel-heading">Confirmation : l'étudiant a été inscrit avce succès</div>
+                        <div class="form-group">
+                            <label class="control-label">Id : </label>
+                            <label class="control-label">{{etudiant.idEtudiant}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Nom : </label>
+                            <label class="control-label">{{etudiant.nom}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Prenom : </label>
+                            <label class="control-label">{{etudiant.prenom}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Date de Naissance : </label>
+                            <label class="control-label">{{etudiant.dateNaissance|date:'yyyy-MM-dd'}}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="" ng-if="exception.message">
+                        <span class="error">{{exception.message}}</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        <script type="text/javascript" src="js/angular.min.js" ></script>
+        <script type="text/javascript" src="js/myApp.js" ></script>
     </body>
 </html>
